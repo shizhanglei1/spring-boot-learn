@@ -1,14 +1,17 @@
 package com.springbootlearn.learn.controller;
 
 import com.springbootlearn.learn.bean.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.logging.LogManager;
 
 @RestController
 @RequestMapping(value = "/index")
@@ -43,5 +46,15 @@ public class IndexController {
         user.setName(name);
         user.setDate(new Date());
         return  user;
+    }
+
+    private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
+    @RequestMapping(value = "/getlog")
+    public String getLog(){
+        logger.debug("this is a debug message");
+        logger.info("this is a info message");
+        logger.error("this is a error message");
+        logger.warn("this is a warning message");
+        return "this is log..";
     }
 }
